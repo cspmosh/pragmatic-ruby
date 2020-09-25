@@ -1,7 +1,12 @@
-greeting = "Welcome!"
+name1 = "larry"
+health1 = 60
 
-3.times do
-  puts greeting.upcase
-end
+name2 = "curly"
+health2 = 60
 
-puts Time.new
+name3 = "moe"
+health3 = 60
+
+puts "#{name1}'s health is #{health1}"
+puts "Players:\n\t#{name1}\n\t#{name2}\n\t#{name3}"
+
