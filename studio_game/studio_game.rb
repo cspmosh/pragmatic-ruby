@@ -1,12 +1,14 @@
-def getTime
-  Time.now.strftime("%I:%M:%S")
-end
+require_relative './player.rb'
 
-def say_hello(name, health=100)
-  "I'm #{name.capitalize} with a health of #{health.to_s} as of #{getTime}."
-end
+player1 = Player.new("moe")
+puts player1
 
-puts say_hello("larry", 60)
-puts say_hello("curly", 125)
-puts say_hello("moe")
-puts say_hello("shemp", 90)
+player2 = Player.new("larry", 60)
+puts player2
+
+player3 = Player.new("curly", 125)
+puts player3
+player3.blam
+puts player3
+player3.w00t
+puts player3
