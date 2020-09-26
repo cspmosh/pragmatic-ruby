@@ -1,5 +1,5 @@
-require_relative './player.rb'
-require_relative './game.rb'
+require_relative 'player'
+require_relative 'game'
 
 player1 = Player.new("moe", 100)
 player2 = Player.new("larry", 60)
