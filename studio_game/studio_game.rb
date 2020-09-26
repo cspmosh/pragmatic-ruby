@@ -10,3 +10,22 @@ puts "There are #{players.size} players in the game:"
 players.each do |p|
   puts p
 end
+
+players.each do |p|
+  puts p.health
+end
+
+players.each do |p|
+  p.blam
+  2.times do
+    p.w00t
+  end
+  puts p
+end
+
+players.pop
+players.push Player.new("shemp")
+
+players.each do |p|
+  puts p
+end
