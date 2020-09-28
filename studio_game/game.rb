@@ -1,3 +1,5 @@
+require_relative 'die'
+
 class Game 
   def initialize(name)
     @name = name
@@ -14,10 +16,18 @@ class Game
       puts p
     end
 
+    @die = Die.new
+
     @players.each do |p|
-      p.blam
-      p.w00t
-      p.w00t
+      @roll = @die.roll
+      case @roll
+      when 1..2 
+        p.blam
+      when 4..6 
+        p.w00t
+      else
+        puts "#{p.name} was skipped."
+      end
       puts p
     end
 
