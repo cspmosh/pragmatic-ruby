@@ -7,23 +7,24 @@ describe Game do
     @initial_health = 100
     @player = Player.new("josh", @initial_health)
     @game.add_player(@player)
+    @rounds = 2
   end
   
   it "rolls a high number" do
     allow_any_instance_of(Die).to receive(:roll).and_return(5)
-    @game.play
-    expect(@player.health).to eq(@initial_health + 15)
+    @game.play(@rounds)
+    expect(@player.health).to eq(@initial_health + (15 * @rounds))
   end
 
   it "skips the player if a medium number is rolled" do
     allow_any_instance_of(Die).to receive(:roll).and_return(3)
-    @game.play
+    @game.play(@rounds)
     expect(@player.health).to eq(@initial_health)
   end
 
   it "woots a player if a low number is rolled" do
     allow_any_instance_of(Die).to receive(:roll).and_return(1)
-    @game.play
-    expect(@player.health).to eq(@initial_health - 10)
+    @game.play(@rounds)
+    expect(@player.health).to eq(@initial_health - (10 * @rounds))
   end
 end

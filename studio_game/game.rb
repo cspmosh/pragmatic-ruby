@@ -1,4 +1,5 @@
 require_relative 'die'
+require_relative 'game_turn'
 
 class Game 
   def initialize(name)
@@ -10,26 +11,44 @@ class Game
     @players << player
   end
 
-  def play
+  def play(rounds)
     puts "There are #{@players.length} players in #{@name}:"
-    @players.each do |p|
-      puts p
+
+    @players.each do |player|
+      puts player
     end
 
-    @die = Die.new
-
-    @players.each do |p|
-      @roll = @die.roll
-      case @roll
-      when 1..2 
-        p.blam
-      when 4..6 
-        p.w00t
-      else
-        puts "#{p.name} was skipped."
+    1.upto(rounds) do |round|
+      puts "\nRound #{round}:"
+      @players.each do |player|
+        GameTurn.take_turn(player)
+        puts player
       end
-      puts p
+    end
+  end
+
+  def print_name_and_health(player)
+    puts "#{p.name} (#{p.health})"
+  end
+
+  def print_stats
+    strong, wimpy = @players.partition { |p| p.strong? }
+
+    puts "\n#{@name} Statistics:"
+
+    puts "\n#{strong.length} strong players:"
+    strong.each do |p|
+      print_name_and_health(p)
     end
 
+    puts "\n#{wimpy.length} wimpy players:"
+    wimpy.each do |p|
+      print_name_and_health(p)
+    end
+
+    puts "\n#{@name} High Scores:"
+    @players.sort.each do |p|
+      puts "#{p.name.ljust(20, '.')} (#{p.score})"
+    end
   end
 end
