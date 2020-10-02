@@ -1,4 +1,5 @@
 require_relative 'player'
+require_relative 'treasure_trove'
 
 describe Player do
 
@@ -51,6 +52,28 @@ describe Player do
     @player.found_treasure(Treasure.new(:hammer, 50))
   
     expect(@player.points).to eq(500)
+  end
+
+  it "yields each found treasure and its total points" do
+    @player.found_treasure(Treasure.new(:skillet, 100))
+    @player.found_treasure(Treasure.new(:skillet, 100))
+    @player.found_treasure(Treasure.new(:hammer, 50))
+    @player.found_treasure(Treasure.new(:bottle, 5))
+    @player.found_treasure(Treasure.new(:bottle, 5))
+    @player.found_treasure(Treasure.new(:bottle, 5))
+    @player.found_treasure(Treasure.new(:bottle, 5))
+    @player.found_treasure(Treasure.new(:bottle, 5))
+    
+    yielded = []
+    @player.each_found_treasure do |treasure|
+      yielded << treasure
+    end
+
+    expect(yielded).to eq([
+      Treasure.new(:skillet, 200),
+      Treasure.new(:hammer, 50),
+      Treasure.new(:bottle, 25)
+    ])
   end
 
   context "player has more than 100 health" do
