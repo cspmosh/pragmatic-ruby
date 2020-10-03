@@ -8,6 +8,12 @@ class Game
     @players = []
   end
 
+  def load_players(filename)
+    File.readlines(filename).each do |line|
+      puts line
+    end
+  end
+
   def add_player(player)
     @players << player
   end
