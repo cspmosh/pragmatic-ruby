@@ -7,14 +7,10 @@ player3 = Player.new("curly", 125)
 
 knuckleheads = Game.new("Knuckleheads")
 
-knuckleheads.load_players("players.csv")
-
-knuckleheads.add_player(player1)
-knuckleheads.add_player(player2)
-knuckleheads.add_player(player3)
+knuckleheads.load_players(ARGV.shift || "players.csv")
 
 loop do
-  puts "\nHow many game routes? ('quit' to exit)"
+  puts "\nHow many game rounds? ('quit' to exit)"
   @rounds = gets.chomp.downcase
   case @rounds
   when /^\d+$/
@@ -26,3 +22,5 @@ loop do
     puts "Please enter a number or 'quit'"
   end
 end
+
+knuckleheads.save_high_scores("my_scores.txt")

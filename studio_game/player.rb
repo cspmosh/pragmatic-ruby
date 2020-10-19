@@ -29,6 +29,11 @@ class Player
     @health > 100
   end
 
+  def self.from_csv(csv_line)
+    pname, health = csv_line.split(',')
+    Player.new(pname, Integer(health))
+  end
+
   def found_treasure(treasure)
     @found_treasures[treasure.name.to_sym] += treasure.points
     puts "#{@name} found a #{treasure.name} worth #{treasure.points} points."
