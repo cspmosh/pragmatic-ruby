@@ -54,6 +54,12 @@ describe Player do
     expect(@player.points).to eq(500)
   end
 
+  it "can be created from a csv file" do
+    player = Player.from_csv("Josh,150")
+    expect(player.name).to eq("Josh")
+    expect(player.health).to eq(150)
+  end
+
   it "yields each found treasure and its total points" do
     @player.found_treasure(Treasure.new(:skillet, 100))
     @player.found_treasure(Treasure.new(:skillet, 100))
