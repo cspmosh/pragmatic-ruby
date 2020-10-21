@@ -1,16 +1,13 @@
 require_relative 'auditable'
 
-class Die
+class LoadedDie
   include Auditable 
 
-  attr_reader :number
-
-  def initialize()
-    roll
-  end
+  attr_accessor :number
 
   def roll
-    @number = rand(1..6)
+    numbers = [1,1,2,5,6,6]
+    @number = numbers.sample
     audit
     return @number
   end
