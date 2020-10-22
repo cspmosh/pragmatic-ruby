@@ -1,0 +1,1 @@
+A tutorial-led game that loads a list of players with health and then randomly w00ts or blams them iteratively for as many rounds as the game player wishes until the game player quits and one of the players loaded is determined the winner via a calculatd score.
